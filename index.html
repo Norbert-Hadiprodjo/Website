@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vCard - Personal Portfolio</title>
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Prism.js for syntax highlighting -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+</head>
+
+<!-- Splash Screen -->
+<div id="splash-screen">
+  <div class="splash-content">
+    <div class="identity-text left">
+      <h2>designer</h2>
+      <p>UI/UX Designer with a passion for designing beautiful and functional user experiences.</p>
+    </div>
+
+    <div class="identity-photo">
+      <img src="./assets/images/Norbert.png" alt="Coder Image">
+    </div>
+
+    <div class="identity-text right">
+      <h2>&lt;coder&gt;</h2>
+      <p>Front End Developer passionate about building elegant, user-focused interfaces using modern web technologies.</p>
+    </div>
+  </div>
+</div>
+
+
+<body>
+
+  <!--
+      - #NAVBAR
+    -->
+
+  <nav class="navbar">
+
+    <ul class="navbar-list">
+
+      <li class="navbar-item">
+        <button class="navbar-link  active" data-nav-link>About</button>
+      </li>
+
+      <li class="navbar-item">
+        <button class="navbar-link" data-nav-link>Resume</button>
+      </li>
+
+      <li class="navbar-item">
+        <button class="navbar-link" onclick="alert('Portfolio Section coming soon!')">Portfolio</button>
+      </li>
+
+      <li class="navbar-item">
+        <button class="navbar-link " onclick="alert('Blog Section coming soon!')">Blog</button>
+      </li>
+
+      <li class="navbar-item"> <!-- /* data-nav-link>Contact</button> */ -->
+        <button class="navbar-link" onclick="alert('Contact Section coming soon!')">Contact</button>
+
+      </li>
+       
+    </ul>
+
+  </nav>
+
+  
+
+  <!--
+    - #MAIN
+  -->
+
+  <main>
+
+    <!--
+      - #SIDEBAR
+    -->
+
+    <aside class="sidebar" data-sidebar>
+
+      <div class="sidebar-info">
+
+        <figure class="avatar-box">
+          <img src="./assets/images/Norbert1.png" alt="Norbert Hadiprodjo" width="80">
+        </figure>
+
+        <div class="info-content">
+          <h1 class="name" title="Norbert Hadiprodjo">Norbert Hadiprodjo</h1>
+
+          <p class="title">AI & Financial Engineering</p>
+        </div>
+
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Show Contacts</span>
+
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+
+      </div>
+
+      <div class="sidebar-info_more">
+
+        <div class="separator"></div>
+
+        <ul class="contacts-list">
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Email</p>
+
+              <a href="mailto: norbert.hadiprodjo@mail.utoronto.ca" class="contact-link">norbert.hadiprodjo@mail.utoronto.ca</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="phone-portrait-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Phone</p>
+
+              <a href="tel:+14378384434" class="contact-link">+1 (437) 838-4434</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+            <div class="icon-box">
+              <ion-icon name="calendar-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">LinkedIn</p>
+
+              <a href="https://www.linkedin.com/in/norbert-hadiprodjo" target="_blank" rel="noopener noreferrer">
+                www.linkedin.com
+              </a>
+            </div>
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Location</p>
+
+              <address>Toronto, ON, Canada</address>
+            </div>
+
+          </li>
+
+        </ul>
+
+
+      </div>
+
+    </aside>
+
+
+
+
+
+    <!--
+      - #main-content
+    -->
+
+    <div class="main-content">
+
+      <!--
+        - #ABOUT
+      -->
+
+      <article class="about  active" data-page="about">
+
+    <!-- About Me Section -->
+      <section class="section-box">
+        <header>
+          <h2 class="h2 article-title">About me</h2>
+        </header>
+
+        <div class="code-viewer" id="about-code">
+          <div><span class="comment">// Learning, Building, Optimizing :)</span></div>
+          <div><span class="keyword">const</span> Norbert_Hadiprodjo = <span class="bracket">{</span></div>
+          <div class="indent1"><span class="property">role</span>: <span class="string">"Industrial Engineering Student"</span>,</div>
+          <div class="indent1"><span class="property">experience</span>: <span class="string">"3+ years in Software Development & Machine Learning"</span>,</div>
+          <div class="indent1"><span class="property">skills</span>: <span class="bracket">[</span></div>
+          <div class="indent2"><span class="string">"Software Development"</span>,</div>
+          <div class="indent2"><span class="string">"Machine Learning"</span>,</div>
+          <div class="indent2"><span class="string">"Systems Administration"</span>,</div>
+          <div class="indent2"><span class="string">"Optimization"</span></div>
+          <div class="indent1"><span class="bracket">]</span>,</div>
+          <div class="indent1"><span class="property">interests</span>: <span class="bracket">[</span></div>
+          <div class="indent2"><span class="string">"Efficient ML Applications"</span>,</div>
+          <div class="indent2"><span class="string">"Data-Driven Solutions"</span>,</div>
+          <div class="indent2"><span class="string">"Automation"</span>,</div>
+          <div class="indent2"><span class="string">"Continuous Learning"</span></div>
+          <div class="indent1"><span class="bracket">]</span></div>
+          <div><span class="bracket">}</span>;</div>
+        </div>
+        
+      </section>
+      
+
+        <!--
+          - service
+        -->
+
+        <section class="service">
+
+          <h3 class="h3 service-title">What i'm doing</h3>
+
+          <ul class="service-list">
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-design.svg
+                " alt="design icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Web design</h4>
+
+                <p class="service-item-text">
+                  Creating responsive, user-friendly websites with modern UI/UX principles using HTML, CSS, Tailwind, React, Figma.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-dev.svg" alt="Web development icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Software development</h4>
+
+                <p class="service-item-text">
+                  Building robust, scalable applications and automation tools using Python, JavaScript, Node.js, Git, Docker, SQL. 
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-app.svg" alt="mobile app icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">AI & ML</h4>
+
+                <p class="service-item-text">
+                  Developing intelligent models for prediction, classification, and NLP using PyTorch, TensorFlow, Scikit-learn, OpenAI API.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/finance3.png" alt="camera icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Finance & Quant</h4>
+
+                <p class="service-item-text">
+                  Applying quantitative analysis, data modeling, and forecasting for financial decision-making using Excel, R, Python (pandas, NumPy).
+                </p>
+              </div>
+
+            </li>
+
+          </ul>
+
+        </section>
+
+
+
+        <!--
+          - testimonials modal
+        -->
+
+        <div class="modal-container" data-modal-container>
+
+          <div class="overlay" data-overlay></div>
+
+          <section class="testimonials-modal">
+
+            <button class="modal-close-btn" data-modal-close-btn>
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+
+            <div class="modal-img-wrapper">
+              <figure class="modal-avatar-box">
+                <img src="./assets/images/avatar-1.png" alt="Daniel lewis" width="80" data-modal-img>
+              </figure>
+
+              <img src="./assets/images/icon-quote.svg" alt="quote icon">
+            </div>
+
+            <div class="modal-content">
+
+              <h4 class="h3 modal-title" data-modal-title></h4>
+
+              <time datetime="2021-06-14"></time>
+
+              <div data-modal-text>
+                <p>
+                  
+                </p>
+              </div>
+
+            </div>
+
+          </section>
+
+        </div>
+
+      </article>
+
+
+
+
+
+      <!--
+        - #RESUME
+      -->
+
+      <article class="resume" data-page="resume">
+
+        <header>
+          <h2 class="h2 article-title">Resume</h2>
+        </header>
+
+      <section class="timeline">
+
+        <div class="title-wrapper">
+          <div class="icon-box">
+            <ion-icon name="book-outline"></ion-icon>
+          </div>
+          <h3 class="h3">Education</h3>
+        </div>
+
+        <ol class="timeline-list">
+
+          <!-- University of Toronto -->
+          <li class="timeline-item education-card">
+            <div class="timeline-item-header">
+              <h4 class="h4 timeline-item-title">
+                <ion-icon name="school-outline" style="color:#ffa500; margin-right:6px; vertical-align:middle;"></ion-icon> 
+                University of Toronto
+              </h4>
+              <span class="timeline-item-date highlight-date"><strong>2023 - 2028 (Expected)</strong></span>
+            </div>
+
+            <div class="timeline-text">
+              <ul class="resume-bullets">
+                <li><strong>Bachelor of Applied Science and Engineering (B.A.Sc)</strong> – Industrial Engineering</li>
+                <li><em>Artificial Intelligence & Engineering Business Minors</em></li>
+                <li>🎓 Recipient of <strong>University of Toronto Engineering International Scholar Award</strong>, granted to the top 12% of applicants — valued at <strong>$128,000</strong> over four years for academic excellence, leadership, and dedication.</li>
+                <li><strong>Specialized Coursework:</strong> Data Structures & Algorithms, Object-Oriented Programming, Linear Programming (Optimization), Stochastic System, Data Science, Complexity Analysis, Operations System, Data Modelling, Probability, Statistics, Engineering Communication</li>
+              </ul>
+            </div>
+          </li>
+
+        
+          <!-- Wharton -->
+          <li class="timeline-item education-card">
+            <div class="timeline-item-header">
+              <h4 class="h4 timeline-item-title">
+                <ion-icon name="business-outline" style="color:#ffa500; margin-right:6px;"></ion-icon>
+                Wharton University of Pennsylvania
+              </h4>
+              <span class="timeline-item-date highlight-date"><strong>June 2022</strong></span>
+            </div>
+
+            <div class="timeline-text">
+              <ul class="resume-bullets">
+                <li><strong>Leadership in the Business World – Wharton Global Youth Program</strong></li>
+                <li>🏆 Full Ride Sponsorship by Tanoto Scholarship</li>
+                <li><strong>Specialized Coursework:</strong> Organizational Strategy, Leadership Competencies, Negotiation, Finance, Customer Centricity, Business Model Generation, Management</li>
+              </ul>
+            </div>
+
+            <div class="timeline-image">
+              <img src="assets/images/wharton.png" alt="Wharton Program Photo or Certificate">
+            </div>
+          </li>
+
+
+        </ol>
+      </section>
+
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="briefcase-outline"></ion-icon>
+            </div>
+            <h3 class="h3">Experience</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item education-card">
+              <div class="timeline-header">
+                <div class="timeline-left">
+                  <h4 class="h4 timeline-item-title">
+                    System Project Coordinator Intern
+                  </h4>
+                  <span class="timeline-org">University of Toronto</span>
+                </div>
+                <div class="timeline-right">
+                  <span class="timeline-date"><strong>May 2025 — Present</strong></span>
+                  <span class="timeline-location">Toronto, ON</span>
+                </div>
+              </div>
+              <p class="timeline-text">
+                Built a centralized project dashboard with Power BI, Excel automation, and SharePoint to track 15+ initiatives, cutting reporting time by 40%, and automated workflows with Python and Microsoft Forms. Developed an ML model to predict Total Project Cost, improving budgeting accuracy and speeding project planning by 25%.
+              </p>
+            </li>
+
+            
+            <li class="timeline-item education-card">
+              <div class="timeline-header">
+                <div class="timeline-left">
+                  <h4 class="h4 timeline-item-title">
+                    Data & AI Model Optimization Researcher
+                  </h4>
+                  <span class="timeline-org">Scale AI</span>
+                </div>
+                <div class="timeline-right">
+                  <span class="timeline-date"><strong>April 2025 — Present</strong></span>
+                  <span class="timeline-location">San Francisco, US (Remote)</span>
+                </div>
+              </div>
+              <p class="timeline-text">
+                Optimizing Gemini 2.5 Pro Experimental, Claude 3.7 Sonnet, and ChatGPT 04-mini-high-model for code generation by designing complex prompts, automating test pipelines, and analyzing model performance across Python, Java, C/C++, and JavaScript. Using debugging, static analysis, and statistical benchmarking to improve code quality, reliability, and reasoning in real-world software development tasks.
+              </p>
+            </li>
+            
+            
+
+            
+            <li class="timeline-item education-card">
+              <div class="timeline-header">
+                <div class="timeline-left">
+                  <h4 class="h4 timeline-item-title">
+                    Machine Learning Intern
+                  </h4>
+                  <span class="timeline-org">Vosyn</span>
+                </div>
+                <div class="timeline-right">
+                  <span class="timeline-date"><strong>Sept 2024 — Dec 2024</strong></span>
+                  <span class="timeline-location">Etobicoke, ON</span>
+                </div>
+              </div>
+              <p class="timeline-text">
+                Focused on advancing voice cloning technology by fine-tuning the XTTS model and training the Retrieval-based Voice Conversion (RVC) model. Aimed to develop natural-sounding, expressive synthetic voices tailored to specific applications and user requirements.
+              </p>
+            </li>
+            
+
+            
+              <li class="timeline-item education-card">
+                <div class="timeline-header">
+                  <div class="timeline-left">
+                    <h4 class="h4 timeline-item-title">
+                      IT Analyst & Data Analyst Intern
+                    </h4>
+                    <span class="timeline-org">Vosyn</span>
+                  </div>
+                  <div class="timeline-right">
+                    <span class="timeline-date"><strong>Apr 2024 — Aug 2024</strong></span>
+                    <span class="timeline-location">Etobicoke, ON</span>
+                  </div>
+                </div>
+                <p class="timeline-text">
+                  Contributed to technical support and onboarding automation by developing solutions using APIs, JavaScript, Python, and Excel, streamlining workflows and enhancing overall system efficiency. Recognized for strong technical performance and interpersonal skills, and selected to represent the team at COLLISION 2024 through an intern pitch presentation.
+                </p>
+              </li>
+           
+
+            
+            <li class="timeline-item education-card">
+              <div class="timeline-header">
+                <div class="timeline-left">
+                  <h4 class="h4 timeline-item-title">
+                    Software Engineering Intern
+                  </h4>
+                  <span class="timeline-org">Kode Kiddo</span>
+                </div>
+                <div class="timeline-right">
+                  <span class="timeline-date"><strong>May 2023 — Aug 2023</strong></span>
+                  <span class="timeline-location">Jakarta, Indonesia</span>
+                </div>
+              </div>
+              <p class="timeline-text">
+                Enhanced children's coding education by 80% through the development of an interactive Unity-based platform for Android and Windows, created in collaboration with curriculum developers. Demonstrated key game development concepts by building a billiards game app as a final project example and providing technical support to ensure student understanding and engagement.
+              </p>
+            </li>
+            
+          </ol>
+        </section>
+
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="people-outline"></ion-icon>
+            </div>
+            <h3 class="h3">Organizational</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            
+            <li class="timeline-item education-card">
+              <div class="timeline-header">
+                <div class="timeline-left">
+                  <h4 class="h4 timeline-item-title">
+                    University of Toronto Machine Intelligence Student Team
+                  </h4>
+                  <span class="timeline-org">UTMIST</span>
+                </div>
+                <div class="timeline-right">
+                  <span class="timeline-date"><strong>Apr 2025 — Present</strong></span>
+                  <span class="timeline-location">Toronto, ON</span>
+                </div>
+              </div>
+              <p class="timeline-text">
+                Developed an image captioning model using Keras, integrating a CNN-LSTM architecture to generate context-aware captions. Preprocessed datasets with tokenization. Optimized training pipeline for efficient cloud deployment using AWS and TensorFlow Serving.
+              </p>
+            </li>
+            
+
+           
+            <li class="timeline-item education-card">
+              <div class="timeline-header">
+                <div class="timeline-left">
+                  <h4 class="h4 timeline-item-title">
+                    University of Toronto Engineering Student Consulting Association
+                  </h4>
+                  <span class="timeline-org">UTESCA</span>
+                </div>
+                <div class="timeline-right">
+                  <span class="timeline-date"><strong>Apr 2025 — Present</strong></span>
+                  <span class="timeline-location">Toronto, ON</span>
+                </div>
+              </div>
+              <p class="timeline-text">
+                Achieved a 240% improvement in data entry efficiency, measured by completion time, by automating data extraction and analysis with data analytics tools such as web scraping, Python, NLP, SQL, and Power BI.
+              </p>
+            </li>
+            
+
+            
+            <li class="timeline-item education-card">
+              <div class="timeline-header">
+                <div class="timeline-left">
+                  <h4 class="h4 timeline-item-title">
+                    University of Toronto Indonesian Student Association (UTISA)
+                  </h4>
+                  <span class="timeline-org">UTISA</span>
+                </div>
+                <div class="timeline-right">
+                  <span class="timeline-date"><strong>Apr 2025 — Present</strong></span>
+                  <span class="timeline-location">Toronto, ON</span>
+                </div>
+              </div>
+              <p class="timeline-text">
+                Optimized UTISA’s financial management by implementing zero-based budgeting, automating expense tracking with Excel macros, and negotiating vendor contracts, reducing operating costs by 15% and increasing event ROI by 25%, generating an additional $2,000 in annual revenue.
+              </p>
+            </li>
+            
+
+          </ol>
+        </section>
+
+
+        <section class="skill">
+
+          <h3 class="h3 skills-title">My skills</h3>
+
+          <ul class="skills-list content-card">
+
+              <li class="skills-item">
+                <div class="title-wrapper">
+                  <h5 class="h5">Programming</h5>
+                  <span class="skill-tools">Python, Java, C/C++, JavaScript</span>
+                  <data value="90">90%</data>
+                </div>
+                <div class="skill-progress-bg">
+                  <div class="skill-progress-fill" style="width: 90%;"></div>
+                </div>
+              </li>
+
+  
+
+             <li class="skills-item">
+              <div class="title-wrapper">
+                <h5 class="h5">Web Development</h5>
+                <span class="skill-tools">HTML/CSS, React, Node.js</span>
+                <data value="85">85%</data>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 85%;"></div>
+              </div>
+            </li>
+
+             <li class="skills-item">
+              <div class="title-wrapper">
+                <h5 class="h5">Data & AI</h5>
+                <span class="skill-tools">Pandas, NumPy, TensorFlow, PyTorch</span>
+                <data value="80">80%</data>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 80%;"></div>
+              </div>
+            </li>
+
+            
+
+            <li class="skills-item">
+              <div class="title-wrapper">
+                <h5 class="h5">Visualization & BI</h5>
+                <span class="skill-tools">Power BI, Matplotlib, Plotly</span>
+                <data value="75">75%</data>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 75%;"></div>
+              </div>
+            </li>
+
+          </ul>
+
+        </section>
+
+      </article>
+
+
+
+
+
+      <!--
+        - #PORTFOLIO
+      -->
+
+      <article class="portfolio" data-page="portfolio">
+
+        <header>
+          <h2 class="h2 article-title">Portfolio</h2>
+        </header>
+
+        <section class="projects">
+
+          <ul class="filter-list">
+
+            <li class="filter-item">
+              <button class="active" data-filter-btn>All</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Web design</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Applications</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Web development</button>
+            </li>
+
+          </ul>
+
+          <div class="filter-select-box">
+
+            <button class="filter-select" data-select>
+
+              <div class="select-value" data-selecct-value>Select category</div>
+
+              <div class="select-icon">
+                <ion-icon name="chevron-down"></ion-icon>
+              </div>
+
+            </button>
+
+            <ul class="select-list">
+
+              <li class="select-item">
+                <button data-select-item>All</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Web design</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Applications</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Web development</button>
+              </li>
+
+            </ul>
+
+          </div>
+
+          <ul class="project-list">
+
+            <li class="project-item  active" data-filter-item data-category="web development">
+              <a href="https://themissi.wixsite.com/showcase">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-1.jpg" alt="The MISSI" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">The MISSI</h3>
+
+                <p class="project-category">Web development</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="web development">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-2.png" alt="orizon" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Orizon</h3>
+
+                <p class="project-category">Web development</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="web design">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-3.jpg" alt="fundo" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Fundo</h3>
+
+                <p class="project-category">Web design</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="applications">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-4.png" alt="brawlhalla" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Brawlhalla</h3>
+
+                <p class="project-category">Applications</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="web design">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-5.png" alt="dsm." loading="lazy">
+                </figure>
+
+                <h3 class="project-title">DSM.</h3>
+
+                <p class="project-category">Web design</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="web design">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-6.png" alt="metaspark" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">MetaSpark</h3>
+
+                <p class="project-category">Web design</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="web development">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-7.png" alt="summary" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Summary</h3>
+
+                <p class="project-category">Web development</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="applications">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-8.jpg" alt="task manager" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Task Manager</h3>
+
+                <p class="project-category">Applications</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="web development">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-9.png" alt="arrival" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Arrival</h3>
+
+                <p class="project-category">Web development</p>
+
+              </a>
+            </li>
+
+          </ul>
+
+        </section>
+
+      </article>
+
+
+
+
+
+      <!--
+        - #BLOG
+      -->
+
+      <article class="blog" data-page="blog">
+
+        <header>
+          <h2 class="h2 article-title">Blog</h2>
+        </header>
+
+        <section class="blog-posts">
+
+          <ul class="blog-posts-list">
+
+            <li class="blog-post-item">
+              <a href="#">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog-1.jpg" alt="Design conferences in 2022" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Design</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2022-02-23">Fab 23, 2022</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">Design conferences in 2022</h3>
+
+                  <p class="blog-text">
+                    Veritatis et quasi architecto beatae vitae dicta sunt, explicabo.
+                  </p>
+
+                </div>
+
+              </a>
+            </li>
+
+            <li class="blog-post-item">
+              <a href="#">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog-2.jpg" alt="Best fonts every designer" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Design</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2022-02-23">Fab 23, 2022</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">Best fonts every designer</h3>
+
+                  <p class="blog-text">
+                    Sed ut perspiciatis, nam libero tempore, cum soluta nobis est eligendi.
+                  </p>
+
+                </div>
+
+              </a>
+            </li>
+
+            <li class="blog-post-item">
+              <a href="#">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog-3.jpg" alt="Design digest #80" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Design</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2022-02-23">Fab 23, 2022</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">Design digest #80</h3>
+
+                  <p class="blog-text">
+                    Excepteur sint occaecat cupidatat no proident, quis nostrum exercitationem ullam corporis suscipit.
+                  </p>
+
+                </div>
+
+              </a>
+            </li>
+
+            <li class="blog-post-item">
+              <a href="#">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog-4.jpg" alt="UI interactions of the week" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Design</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2022-02-23">Fab 23, 2022</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">UI interactions of the week</h3>
+
+                  <p class="blog-text">
+                    Enim ad minim veniam, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi.
+                  </p>
+
+                </div>
+
+              </a>
+            </li>
+
+            <li class="blog-post-item">
+              <a href="#">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog-5.jpg" alt="The forgotten art of spacing" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Design</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2022-02-23">Fab 23, 2022</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">The forgotten art of spacing</h3>
+
+                  <p class="blog-text">
+                    Maxime placeat, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  </p>
+
+                </div>
+
+              </a>
+            </li>
+
+            <li class="blog-post-item">
+              <a href="#">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog-6.jpg" alt="Design digest #79" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Design</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2022-02-23">Fab 23, 2022</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">Design digest #79</h3>
+
+                  <p class="blog-text">
+                    Optio cumque nihil impedit uo minus quod maxime placeat, velit esse cillum.
+                  </p>
+
+                </div>
+
+              </a>
+            </li>
+
+          </ul>
+
+        </section>
+
+      </article>
+
+
+
+      <!--
+        - #CONTACT
+      -->
+
+      <article class="contact" data-page="contact">
+
+        <header>
+          <h2 class="h2 article-title">Contact</h2>
+        </header>
+
+        <section class="mapbox" data-mapbox>
+          <figure>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d199666.5651251294!2d-121.58334177520186!3d38.56165006739519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809ac672b28397f9%3A0x921f6aaa74197fdb!2sSacramento%2C%20CA%2C%20USA!5e0!3m2!1sen!2sbd!4v1647608789441!5m2!1sen!2sbd"
+              width="400" height="300" loading="lazy"></iframe>
+          </figure>
+        </section>
+
+        <section class="contact-form">
+
+          <h3 class="h3 form-title">Contact Form</h3>
+
+          <form action="#" class="form" data-form>
+
+            <div class="input-wrapper">
+              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
+
+              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+            </div>
+
+            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+
+            <button class="form-btn" type="submit" disabled data-form-btn>
+              <ion-icon name="paper-plane"></ion-icon>
+              <span>Send Message</span>
+            </button>
+
+          </form>
+
+        </section>
+
+      </article>
+
+    </div>
+
+  </main>
+
+
+
+
+
+
+  <!--
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!--
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
