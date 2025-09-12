@@ -345,69 +345,172 @@ main {
   #SPLASH
 \*-----------------------------------*/
 
-/* Splash screen container */
-#splash-screen {
+/* === Splash overlay === */
+.splash {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: #0d0d0d;
+  inset: 0;
   z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 1s ease;
+
+  /* frosted overlay that shows the page behind it */
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(8px) saturate(110%);
+  -webkit-backdrop-filter: blur(8px) saturate(110%);
+
   overflow: hidden;
+  transform: translateY(0);
+}
+
+/* optional: smooth vignette */
+.splash::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(ellipse at center,
+              rgba(255,255,255,0.05) 0%,
+              rgba(0,0,0,0.0) 60%);
+  pointer-events: none;
+}
+
+/* Keep your existing splash layout aesthetics */
+.splash-inner {
+  position: relative;
+  max-width: 1200px;
+  width: min(92vw, 1200px);
+  padding: 24px;
 }
 
 .splash-content {
   display: flex;
+  gap: clamp(24px, 6vw, 64px);
   align-items: center;
   justify-content: center;
-  gap: 50px;
-  width: 100%;
-  padding: 40px;
-  text-align: center;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
-.identity-photo img {
-  height: 90vh; /* or 80vh */
-  object-fit: contain;
-  max-height: 700px;
-  border-radius: 0;
+.splash .identity-photo img {
+  max-width: clamp(180px, 26vw, 320px);
+  height: auto;
+  display: block;
 }
 
-.identity-text {
-  max-width: 300px;
-  flex: 1;
+.splash .identity-text {
+  background: rgba(20,20,20,0.7);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: clamp(16px, 2vw, 28px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  max-width: 440px;
 }
 
-.identity-text h2 {
-  font-size: 36px;
-  margin-bottom: 10px;
+.splash .identity-text h2 {
+  margin: 0 0 10px;
+  font-weight: 700;
+  color: #fff;
 }
 
-.identity-text p {
-  font-size: 16px;
-  line-height: 1.5;
-  opacity: 0.85;
+.splash .identity-text p {
+  margin: 0;
+  color: #d7d7d7;
+  line-height: 1.6;
 }
 
-@media (max-width: 900px) {
-  .splash-content {
-    flex-direction: column;
-    text-align: center;
+/* Skip button */
+.splash-skip {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  padding: 8px 14px;
+  font-size: 14px;
+  color: #111;
+  background: #f1f1f1;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+}
+.splash-skip:hover { opacity: 1; }
+
+/* Prevent page scroll while splash is visible */
+body.no-scroll { overflow: hidden; }
+
+/* === Fade out (replace slide-away block) === */
+.splash {
+  opacity: 1;
+  transition: opacity 0.8s ease; /* adjust duration as you like */
+}
+
+.splash.is-hiding {
+  opacity: 0;              /* fades to 0 */
+  pointer-events: none;    /* ignore clicks during fade */
+}
+
+.splash.hidden {
+  display: none;           /* remove from layout after fade completes */
+}
+
+/* --------------------------- */
+
+
+.identity-photo { position: relative; }
+#splash-anchor{
+  position:absolute;
+  left:50%; bottom:28%;          /* tweak to sit over your chest */
+  width:10px; height:10px;       /* invisible pin */
+  transform:translate(-50%, 50%);
+  pointer-events:none;
+}
+
+/* Base splash layout */
+.splash-content{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: clamp(24px, 5vw, 80px);
+  flex-wrap: wrap;                 /* lets items wrap on smaller screens */
+}
+
+/* Keep image and text blocks scaling nicely */
+.identity-photo img{
+  width: clamp(180px, 28vw, 420px);
+  height:auto;
+}
+
+#splash-left,
+#splash-right{
+  max-width: min(42ch, 38vw);
+}
+
+/* --- Responsive offsets for the RIGHT box --- */
+/* Desktop / large screens: match your “second pic” */
+@media (min-width: 1200px){
+  #splash-right{
+    margin-top: -170px;   /* raise it a bit over the image */
+    margin-right: 140px;  /* nudge inward from the edge */
   }
+}
 
-  .identity-photo img {
-    height: auto;
-    width: 60%;
+/* Laptops / medium screens: smaller offsets */
+@media (min-width: 900px) and (max-width: 1199px){
+  #splash-right{
+    margin-top: -120px;
+    margin-right: 60px;
   }
 }
 
-
+/* Tablets & phones: stack cleanly, no negative margins */
+@media (max-width: 899px){
+  .splash-content{ flex-direction: column; }
+  #splash-right{
+    margin: 12px 0 0 0;   /* reset */
+    max-width: 90vw;      /* give it room */
+  }
+  .identity-photo img{
+    width: clamp(200px, 45vw, 340px);
+  }
+}
 
 
 
@@ -1708,17 +1811,52 @@ textarea.form-input::-webkit-resizer { display: none; }
 .timeline-image {
   margin-top: 15px;
   text-align: center;
+  max-width: 300px;   /* limit container width */  /* center horizontally */
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .timeline-image img {
+  width: auto;
   max-width: 100%;
   height: auto;
   border-radius: 8px; /* optional for rounded corners */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* optional for nice shadow */
   max-height: 250px; /* adjust as you like */
   object-fit: contain;
-  display: block;
+  display: inline-block;
 }
+
+.timeline-item .timeline-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 auto !important;   /* don't grow */
+}
+
+@media (max-width: 480px) {
+  .timeline-item .timeline-image { width: 140px; flex-basis: 140px; }
+}
+@media (min-width: 992px) {
+  .timeline-item .timeline-image { width: 220px; flex-basis: 220px; }
+}
+
+@media (max-width: 600px) {
+.timeline-image {
+  max-width: 150px; /* smaller container */
+}
+
+.timeline-item .timeline-image img.timeline-photo {
+display: block;
+margin: 0 auto;
+width: clamp(120px, 40vw, 180px) !important;  /* <= shrinks on phones */
+height: auto !important;                      /* keep aspect ratio */
+max-height: 180px !important;                 /* extra guard if height explodes */
+border-radius: 8px;
+box-shadow: 0 4px 12px rgba(0,0,0,.3);
+object-fit: contain;                           /* harmless with height:auto */
+}
+
 
 
 
@@ -1727,11 +1865,23 @@ textarea.form-input::-webkit-resizer { display: none; }
    * #PORTFOLIO, BLOG
    */
 
-  .project-img, .blog-banner-box { border-radius: 16px; }
+ .project-img {
+  width: 100%;
+  height: 200px;              /* set a consistent height */
+  overflow: hidden;           /* crop any overflow */
+  border-radius: 12px;        /* optional: makes corners consistent */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111;           /* fallback background */
+}
 
-  .blog-posts-list { gap: 30px; }
-
-  .blog-content { padding: 25px; }
+.project-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* ensures consistent scaling & cropping */
+  border-radius: 12px;
+}
 
 
 
@@ -1964,6 +2114,11 @@ textarea.form-input::-webkit-resizer { display: none; }
   .navbar { max-width: none; margin: 15px 12px; }
 }
 
+@media (max-width: 420px) {
+  .navbar { padding: 8px 12px; gap: 0; }
+  .navbar-list { gap: 18px; }
+  .navbar-link { font-size: 15px; padding: 8px 8px; }
+}
 /* Optional: keep link styling */
 .navbar-item { margin: 0; }           /* spacing comes from .navbar-list gap */
 .navbar-link {
@@ -2453,3 +2608,193 @@ textarea.form-input::-webkit-resizer { display: none; }
     border-radius: 2px;
   }
 }
+
+/***** MODAL — CLEAN BASE *****/
+#projectModal, #projectModal * { box-sizing: border-box; }
+body.modal-open { overflow: hidden; }
+
+#projectModal.modal{
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+}
+#projectModal.modal.open{ display:block; }
+
+/* Backdrop */
+#projectModal .modal__backdrop{
+  position:absolute; inset:0;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(8px);
+}
+
+/* Dialog (centered card) */
+#projectModal .modal__dialog{
+  position:absolute; left:50%; top:50%;
+  transform: translate(-50%, -50%);
+  width: min(1200px, calc(100vw - 48px));
+  height: min(800px, calc(100vh - 48px));
+  background: rgba(20,20,20,.92);
+  color:#eee;
+  border-radius:16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.45);
+  overflow:hidden;
+}
+
+/* Close */
+#projectModal .modal__close{
+  position:absolute; right:12px; top:10px; z-index:5;
+  background:transparent; border:0; color:#bbb;
+  font-size:28px; line-height:1; cursor:pointer;
+}
+#projectModal .modal__close:hover{ color:#fff; }
+
+/***** LAYOUT — STRICT 2 COLUMNS *****/
+#projectModal .modal__content{
+  display:grid;
+  grid-template-columns: 58% 42%;      /* left media | right text */
+  height:100%;
+  align-items: stretch;
+}
+
+/* Left pane: media (carousel) */
+#projectModal .modal__media{
+  position:relative;
+  min-width:0; height:100%;
+  overflow:hidden;                     /* hide edges */
+}
+
+/* Slider fills media */
+/* Slider fills media */
+#projectModal .slider{ width:100%; height:100%; }
+
+/* USE FLEX (not grid) so translateX always works */
+#projectModal .slider__track{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform .35s ease;
+  will-change: transform;
+}
+
+/* each slide = full viewport width of the media pane */
+#projectModal .slider__slide{
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  display:flex; align-items:center; justify-content:center;
+}
+
+#projectModal .slider__slide img{
+  width:100%; height:100%;
+  object-fit: cover;                   /* full-bleed left pane */
+  display:block; border:0; border-radius:0;
+}
+
+/* Arrows — single circular chevrons */
+#projectModal .slider__nav{
+  position:absolute; top:50%; transform:translateY(-50%);
+  z-index:3; width:44px; height:44px; border-radius:999px;
+  border:1px solid rgba(255,255,255,.35);
+  background:rgba(0,0,0,.55); color:#fff;
+  display:grid; place-items:center; cursor:pointer; font-size:0;
+}
+#projectModal .slider__prev{ left:12px; }
+#projectModal .slider__next{ right:12px; }
+#projectModal .slider__nav::before{
+  content:''; width:12px; height:12px;
+  border-top:2px solid currentColor; border-right:2px solid currentColor;
+  transform: rotate(45deg);
+}
+#projectModal .slider__prev::before{ transform: rotate(-135deg); }
+
+/* Dots */
+#projectModal .slider__dots{
+  position:absolute; bottom:12px; left:50%; transform:translateX(-50%);
+  z-index:2; display:flex; gap:8px;
+}
+#projectModal .slider__dot{
+  width:8px; height:8px; border-radius:999px; border:0;
+  background: rgba(255,255,255,.35); cursor:pointer;
+}
+#projectModal .slider__dot[aria-current="true"]{ background: rgba(255,255,255,.95); }
+
+/* Right pane: text */
+#projectModal .modal__body{
+  min-width:0; height:100%;
+  padding:28px;
+  overflow-y:auto;
+  /* subtle separation from image */
+  background: rgba(12,12,12,.30);
+  box-shadow: inset 1px 0 0 rgba(255,255,255,.06);
+}
+#projectModal .modal__title{ margin:0 0 6px; }
+#projectModal .modal__tags{ opacity:.75; margin:0 0 14px; }
+#projectModal .modal__desc{ line-height:1.6; }
+
+/* Buttons — blue rounded rectangles */
+#projectModal .modal__buttons{ margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+#projectModal .btn-blue{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:10px 16px; border-radius:8px;
+  background:#3b82f6; color:#fff; text-decoration:none; font-weight:600;
+  border:1px solid transparent; box-shadow:0 8px 20px rgba(59,130,246,.25);
+  transition: background .15s, box-shadow .15s, transform .15s;
+}
+#projectModal .btn-blue:hover{ background:#2563eb; transform:translateY(-1px); box-shadow:0 12px 28px rgba(59,130,246,.32); }
+#projectModal .btn-blue--alt{
+  padding:10px 16px; border-radius:8px;
+  background:rgba(59,130,246,.10); color:#9cc4ff; text-decoration:none; font-weight:600;
+  border:1px solid rgba(59,130,246,.45);
+}
+#projectModal .btn-blue--alt:hover{ background:rgba(59,130,246,.18); }
+
+/* Mobile: stack */
+@media (max-width: 900px){
+  #projectModal .modal__dialog{
+    width: calc(100vw - 24px);
+    height: auto; max-height: calc(100vh - 24px);
+  }
+  #projectModal .modal__content{ grid-template-columns: 1fr; }
+  #projectModal .modal__media{ height: 52vh; }
+  #projectModal .modal__body{ background: transparent; box-shadow: none; }
+}
+
+/* Make modal images respect aspect ratio */
+#projectModal .slider__track img {
+  width: 100%;
+  height: auto;          /* scale proportionally */
+  object-fit: contain;   /* fit inside box without cropping */
+  max-height: 80vh;      /* keep it within viewport height */
+  background: #000;      /* optional: letterbox bars */
+  display: block;
+  margin: 0 auto;
+}
+
+#projectModal .slider__track video {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-height: 80vh;
+  display: block;
+  margin: 0 auto;
+  background: #000;
+}
+
+
+/* Portfolio */
+
+/* card base */
+.project-card { display:block; }
+
+/* image box: consistent ratio & crop */
+.project-card .project-img{
+  width:100%;
+  aspect-ratio: 16 / 9;     /* same size for all thumbs */
+  overflow:hidden;
+  border-radius:12px;
+  background:#111;
+}
+
+
+
