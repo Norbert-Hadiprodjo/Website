@@ -114,24 +114,29 @@ for (let i = 0; i < filterBtn.length; i++) {
 
 
 
-// contact form variables
+
+// CONTACT FORM (mailto version)
 const form = document.querySelector("[data-form]");
 const formInputs = document.querySelectorAll("[data-form-input]");
 const formBtn = document.querySelector("[data-form-btn]");
 
-// add event to all form input field
-for (let i = 0; i < formInputs.length; i++) {
-  formInputs[i].addEventListener("input", function () {
+// enable/disable the button based on validity
+const toggleBtn = () => {
+  if (!form) return;
+  if (form.checkValidity()) formBtn?.removeAttribute("disabled");
+  else formBtn?.setAttribute("disabled", "");
+};
 
-    // check form validation
-    if (form.checkValidity()) {
-      formBtn.removeAttribute("disabled");
-    } else {
-      formBtn.setAttribute("disabled", "");
-    }
+// listen for typing/changes
+formInputs.forEach(el => {
+  el.addEventListener("input", toggleBtn);
+  el.addEventListener("change", toggleBtn); // helps with autofill
+});
 
-  });
-}
+// run once on load (covers autofill/BFCache)
+document.addEventListener("DOMContentLoaded", toggleBtn);
+window.addEventListener("pageshow", toggleBtn);
+
 
 
 
@@ -157,20 +162,32 @@ for (let i = 0; i < navigationLinks.length; i++) {
   });
 }
 
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    const splash = document.getElementById("splash-screen");
-    if (splash) {
-      splash.style.opacity = "0";
-      setTimeout(() => splash.style.display = "none", 1000);
-    }
-  }, 1000); // show splash for 1 seconds
+
+document.body.classList.add('no-scroll');
+
+const splash = document.querySelector('.splash');
+const skipBtn = document.querySelector('.splash-skip');
+
+// Auto-fade after 3s
+setTimeout(() => {
+  splash.classList.add('is-hiding');
+}, 3000);
+
+// Also allow manual skip
+skipBtn?.addEventListener('click', () => {
+  splash.classList.add('is-hiding');
 });
 
-// === About Me typing (line-by-line, caret follows) ===
-// === About Me typing (line-by-line, starts when About is active) ===
-// === About Me typing (line-by-line, caret follows) ===
-// === About Me typing (line-by-line, caret follows, robust) ===
+// When fade finishes, remove from layout & restore scroll
+splash.addEventListener('transitionend', (e) => {
+  if (e.propertyName === 'opacity' && splash.classList.contains('is-hiding')) {
+    splash.classList.add('hidden');
+    document.body.classList.remove('no-scroll');
+  }
+});
+
+
+ //---------------------------------------------------------------------
 // Typing: line-by-line, caret follows (without moving into the line)
 (function () {
   const code = document.getElementById('about-code');
@@ -189,6 +206,7 @@ window.addEventListener("load", () => {
   code.appendChild(caret);
 
   let lineIndex = 0;
+
 
   function typeLine() {
     if (lineIndex >= lines.length) { caret.remove(); return; }
@@ -245,3 +263,176 @@ window.addEventListener("load", () => {
 
   typeLine();
 })();
+
+
+
+// ==============================
+// PORTFOLIO (Modal + Image Slider)
+// ==============================
+(() => {
+  const modal = document.getElementById('projectModal');
+  if (!modal) return;
+
+  // Grab modal UI pieces safely
+  const titleEl = document.getElementById('modalTitle');
+  const catEl   = document.getElementById('modalCategory');
+  const descEl  = document.getElementById('modalDesc');
+  const demoEl  = document.getElementById('modalDemo');
+  const ghEl    = document.getElementById('modalGithub');
+
+  const track   = document.getElementById('sliderTrack');
+  const dots    = document.getElementById('sliderDots');
+  const btnPrev = modal.querySelector('[data-prev]');
+  const btnNext = modal.querySelector('[data-next]');
+  const closeBtn= modal.querySelector('.modal__close');
+
+  if (!track || !dots) return; // must have slider parts
+
+  let current = 0;
+
+  // --- Helpers ---
+  const setActiveSlide = (index) => {
+    const slides = Array.from(track.children);
+    const total  = slides.length;
+    if (!total) return;
+
+    current = (index + total) % total;
+
+    slides.forEach((el, i) => el.setAttribute('aria-hidden', i === current ? 'false' : 'true'));
+    dots.querySelectorAll('button').forEach((b, i) => {
+      b.classList.toggle('is-active', i === current);
+      b.setAttribute('aria-current', i === current ? 'true' : 'false');
+    });
+
+    // move the track
+    track.style.transform = `translateX(-${current * 100}%)`;
+
+    // hide nav/dots if single slide
+    const single = total <= 1;
+    btnPrev && (btnPrev.style.display = single ? 'none' : '');
+    btnNext && (btnNext.style.display = single ? 'none' : '');
+    dots.style.display = single ? 'none' : '';
+  };
+
+  const buildDots = (count) => {
+    dots.innerHTML = '';
+    for (let i = 0; i < count; i++) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'slider__dot';
+      b.setAttribute('aria-label', `Go to slide ${i + 1}`);
+      b.addEventListener('click', () => setActiveSlide(i));
+      dots.appendChild(b);
+    }
+  };
+
+  const clearTrack = () => { track.innerHTML = ''; };
+
+  const addImage = (src, alt) => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = alt || '';
+    img.loading = 'lazy';
+    img.className = 'slider__item';
+    img.setAttribute('aria-hidden', 'true');
+    track.appendChild(img);
+  };
+
+  const openModalFromItem = (item) => {
+    // Text
+    const title    = item.querySelector('.project-title')?.textContent?.trim() || '';
+    const category = item.querySelector('.project-category')?.textContent?.trim() || '';
+    const desc     = item.getAttribute('data-desc') || '';
+
+    if (titleEl) titleEl.textContent = title;
+    if (catEl)   catEl.textContent   = category;
+    if (descEl)  descEl.textContent  = desc;
+
+    // Links
+    const demo = item.getAttribute('data-demo');
+    const gh   = item.getAttribute('data-github');
+    if (demoEl) {
+      if (demo) { demoEl.href = demo; demoEl.style.display = ''; }
+      else      { demoEl.removeAttribute('href'); demoEl.style.display = 'none'; }
+    }
+    if (ghEl) {
+      if (gh)   { ghEl.href   = gh;   ghEl.style.display   = ''; }
+      else      { ghEl.removeAttribute('href'); ghEl.style.display   = 'none'; }
+    }
+
+    // Media (images only)
+    clearTrack();
+    const mediaAttr = item.getAttribute('data-images') || item.getAttribute('data-media') || '';
+    const fallback  = item.querySelector('.project-card img')?.getAttribute('src') || '';
+    const sources = (mediaAttr || fallback)
+      .split(',')
+      .map(s => s.trim())
+      .filter(Boolean);
+
+    if (!sources.length && fallback) sources.push(fallback);
+    if (!sources.length) {
+      // If truly nothing, add a tiny transparent placeholder to avoid errors
+      addImage('data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=', `${title} - placeholder`);
+    } else {
+      sources.forEach((src, i) => addImage(src, `${title} - slide ${i + 1}`));
+    }
+
+    buildDots(track.children.length);
+    setActiveSlide(0);
+
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    closeBtn?.focus();
+  };
+
+  const closeModal = () => {
+    modal.classList.remove('open');
+    document.body.classList.remove('modal-open');
+  };
+
+  // --- Open handlers ---
+  document.querySelectorAll('.project-item .project-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
+      const li = card.closest('.project-item');
+      if (!li) return;
+      openModalFromItem(li);
+    });
+  });
+
+  // --- Nav buttons ---
+  btnNext?.addEventListener('click', (e) => {
+    e.preventDefault(); e.stopPropagation();
+    setActiveSlide(current + 1);
+  });
+  btnPrev?.addEventListener('click', (e) => {
+    e.preventDefault(); e.stopPropagation();
+    setActiveSlide(current - 1);
+  });
+
+  // --- Keyboard (only when modal is open) ---
+  document.addEventListener('keydown', (e) => {
+    if (!modal.classList.contains('open')) return;
+    if (e.key === 'ArrowRight') setActiveSlide(current + 1);
+    if (e.key === 'ArrowLeft')  setActiveSlide(current - 1);
+    if (e.key === 'Escape')     closeModal();
+  });
+
+  // --- Touch swipe (simple) ---
+  let startX = 0, deltaX = 0;
+  track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; deltaX = 0; }, { passive: true });
+  track.addEventListener('touchmove',  (e) => { deltaX = e.touches[0].clientX - startX; },   { passive: true });
+  track.addEventListener('touchend',   () => {
+    const threshold = 40;
+    if (Math.abs(deltaX) > threshold) {
+      (deltaX < 0) ? setActiveSlide(current + 1) : setActiveSlide(current - 1);
+    }
+    deltaX = 0;
+  });
+
+  // --- Close interactions ---
+  modal.addEventListener('click', (e) => {
+    if (e.target.matches('[data-close], .modal__backdrop')) closeModal();
+  });
+})();
+
