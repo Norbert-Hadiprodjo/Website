@@ -1811,17 +1811,52 @@ textarea.form-input::-webkit-resizer { display: none; }
 .timeline-image {
   margin-top: 15px;
   text-align: center;
+  max-width: 300px;   /* limit container width */  /* center horizontally */
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .timeline-image img {
+  width: auto;
   max-width: 100%;
   height: auto;
   border-radius: 8px; /* optional for rounded corners */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* optional for nice shadow */
   max-height: 250px; /* adjust as you like */
   object-fit: contain;
-  display: block;
+  display: inline-block;
 }
+
+.timeline-item .timeline-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 auto !important;   /* don't grow */
+}
+
+@media (max-width: 480px) {
+  .timeline-item .timeline-image { width: 140px; flex-basis: 140px; }
+}
+@media (min-width: 992px) {
+  .timeline-item .timeline-image { width: 220px; flex-basis: 220px; }
+}
+
+@media (max-width: 600px) {
+.timeline-image {
+  max-width: 150px; /* smaller container */
+}
+
+.timeline-item .timeline-image img.timeline-photo {
+display: block;
+margin: 0 auto;
+width: clamp(120px, 40vw, 180px) !important;  /* <= shrinks on phones */
+height: auto !important;                      /* keep aspect ratio */
+max-height: 180px !important;                 /* extra guard if height explodes */
+border-radius: 8px;
+box-shadow: 0 4px 12px rgba(0,0,0,.3);
+object-fit: contain;                           /* harmless with height:auto */
+}
+
 
 
 
@@ -1830,11 +1865,23 @@ textarea.form-input::-webkit-resizer { display: none; }
    * #PORTFOLIO, BLOG
    */
 
-  .project-img, .blog-banner-box { border-radius: 16px; }
+ .project-img {
+  width: 100%;
+  height: 200px;              /* set a consistent height */
+  overflow: hidden;           /* crop any overflow */
+  border-radius: 12px;        /* optional: makes corners consistent */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111;           /* fallback background */
+}
 
-  .blog-posts-list { gap: 30px; }
-
-  .blog-content { padding: 25px; }
+.project-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* ensures consistent scaling & cropping */
+  border-radius: 12px;
+}
 
 
 
@@ -2067,6 +2114,11 @@ textarea.form-input::-webkit-resizer { display: none; }
   .navbar { max-width: none; margin: 15px 12px; }
 }
 
+@media (max-width: 420px) {
+  .navbar { padding: 8px 12px; gap: 0; }
+  .navbar-list { gap: 18px; }
+  .navbar-link { font-size: 15px; padding: 8px 8px; }
+}
 /* Optional: keep link styling */
 .navbar-item { margin: 0; }           /* spacing comes from .navbar-list gap */
 .navbar-link {
@@ -2556,3 +2608,219 @@ textarea.form-input::-webkit-resizer { display: none; }
     border-radius: 2px;
   }
 }
+
+/***** MODAL — CLEAN BASE *****/
+#projectModal, #projectModal * { box-sizing: border-box; }
+body.modal-open { overflow: hidden; }
+
+#projectModal.modal{
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+}
+#projectModal.modal.open{ display:block; }
+
+/* Backdrop */
+#projectModal .modal__backdrop{
+  position:absolute; inset:0;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(8px);
+}
+
+/* Dialog (centered card) */
+#projectModal .modal__dialog{
+  position:absolute; left:50%; top:50%;
+  transform: translate(-50%, -50%);
+  width: min(1200px, calc(100vw - 48px));
+  height: min(800px, calc(100vh - 48px));
+  background: rgba(20,20,20,.92);
+  color:#eee;
+  border-radius:16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.45);
+  overflow:hidden;
+}
+
+/* Close */
+#projectModal .modal__close{
+  position:absolute; right:12px; top:10px; z-index:5;
+  background:transparent; border:0; color:#bbb;
+  font-size:28px; line-height:1; cursor:pointer;
+}
+#projectModal .modal__close:hover{ color:#fff; }
+
+/***** LAYOUT — STRICT 2 COLUMNS *****/
+#projectModal .modal__content{
+  display:grid;
+  grid-template-columns: 58% 42%;      /* left media | right text */
+  height:100%;
+  align-items: stretch;
+}
+
+/* Left pane: media (carousel) */
+#projectModal .modal__media{
+  position:relative;
+  min-width:0; height:100%;
+  overflow:hidden;                     /* hide edges */
+}
+
+/* Slider fills media */
+/* Slider fills media */
+#projectModal .slider{ width:100%; height:100%; }
+
+/* USE FLEX (not grid) so translateX always works */
+#projectModal .slider__track{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform .35s ease;
+  will-change: transform;
+}
+
+/* each slide = full viewport width of the media pane */
+#projectModal .slider__slide{
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  display:flex; align-items:center; justify-content:center;
+}
+
+#projectModal .slider__slide img{
+  width:100%; height:100%;
+  object-fit: cover;                   /* full-bleed left pane */
+  display:block; border:0; border-radius:0;
+}
+
+/* Arrows — single circular chevrons */
+#projectModal .slider__nav{
+  position:absolute; top:50%; transform:translateY(-50%);
+  z-index:3; width:44px; height:44px; border-radius:999px;
+  border:1px solid rgba(255,255,255,.35);
+  background:rgba(0,0,0,.55); color:#fff;
+  display:grid; place-items:center; cursor:pointer; font-size:0;
+}
+#projectModal .slider__prev{ left:12px; }
+#projectModal .slider__next{ right:12px; }
+#projectModal .slider__nav::before{
+  content:''; width:12px; height:12px;
+  border-top:2px solid currentColor; border-right:2px solid currentColor;
+  transform: rotate(45deg);
+}
+#projectModal .slider__prev::before{ transform: rotate(-135deg); }
+
+/* Dots */
+#projectModal .slider__dots{
+  position:absolute; bottom:12px; left:50%; transform:translateX(-50%);
+  z-index:2; display:flex; gap:8px;
+}
+#projectModal .slider__dot{
+  width:8px; height:8px; border-radius:999px; border:0;
+  background: rgba(255,255,255,.35); cursor:pointer;
+}
+#projectModal .slider__dot[aria-current="true"]{ background: rgba(255,255,255,.95); }
+
+/* Right pane: text */
+#projectModal .modal__body{
+  min-width:0; height:100%;
+  padding:28px;
+  overflow-y:auto;
+  /* subtle separation from image */
+  background: rgba(12,12,12,.30);
+  box-shadow: inset 1px 0 0 rgba(255,255,255,.06);
+}
+#projectModal .modal__title{ margin:0 0 6px; }
+#projectModal .modal__tags{ opacity:.75; margin:0 0 14px; }
+#projectModal .modal__desc{ line-height:1.6; }
+
+/* Buttons — blue rounded rectangles */
+#projectModal .modal__buttons{ margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+#projectModal .btn-blue{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:10px 16px; border-radius:8px;
+  background:#3b82f6; color:#fff; text-decoration:none; font-weight:600;
+  border:1px solid transparent; box-shadow:0 8px 20px rgba(59,130,246,.25);
+  transition: background .15s, box-shadow .15s, transform .15s;
+}
+#projectModal .btn-blue:hover{ background:#2563eb; transform:translateY(-1px); box-shadow:0 12px 28px rgba(59,130,246,.32); }
+#projectModal .btn-blue--alt{
+  padding:10px 16px; border-radius:8px;
+  background:rgba(59,130,246,.10); color:#9cc4ff; text-decoration:none; font-weight:600;
+  border:1px solid rgba(59,130,246,.45);
+}
+#projectModal .btn-blue--alt:hover{ background:rgba(59,130,246,.18); }
+
+/* Mobile: stack */
+@media (max-width: 900px){
+  #projectModal .modal__dialog{
+    width: calc(100vw - 24px);
+    height: auto; max-height: calc(100vh - 24px);
+  }
+  #projectModal .modal__content{ grid-template-columns: 1fr; }
+  #projectModal .modal__media{ height: 52vh; }
+  #projectModal .modal__body{ background: transparent; box-shadow: none; }
+}
+
+/* Make modal images respect aspect ratio */
+#projectModal .slider__track img {
+  width: 100%;
+  height: auto;          /* scale proportionally */
+  object-fit: contain;   /* fit inside box without cropping */
+  max-height: 80vh;      /* keep it within viewport height */
+  background: #000;      /* optional: letterbox bars */
+  display: block;
+  margin: 0 auto;
+}
+
+
+/* Portfolio */
+
+/* card base */
+.project-card { display:block; }
+
+/* image box: consistent ratio & crop */
+.project-card .project-img{
+  width:100%;
+  aspect-ratio: 16 / 9;     /* same size for all thumbs */
+  overflow:hidden;
+  border-radius:12px;
+  background:#111;
+}
+
+/* SPEED-UP: make Portfolio appear instantly */
+article.active { animation-duration: .20s; } /* general snappier */
+article[data-page="portfolio"].active { animation-duration: .12s; } /* near-instant */
+
+
+/* --- performance guardrails --- */
+
+
+/* 2) lighten global shadows at load; restore when body.hydrated is set */
+body:not(.hydrated) .timeline-item,
+body:not(.hydrated) .navbar,
+body:not(.hydrated) .content-card,
+body:not(.hydrated) .blog-post-item > a { box-shadow:none !important; }
+
+/* 3) disable initial article fade to avoid first-paint animation */
+html:not(.ready) article.active { animation: none !important; }
+
+/* 4) shrink default shadow blur radii site-wide */
+:root{
+  --shadow-1: 0 2px 8px rgba(0,0,0,.18);
+  --shadow-2: 0 6px 12px rgba(0,0,0,.18);
+  --shadow-3: 0 10px 18px rgba(0,0,0,.20);
+  --shadow-4: 0 14px 28px rgba(0,0,0,.18);
+  --shadow-5: 0 18px 36px rgba(0,0,0,.22);
+}
+
+/* 5) cheaper portfolio hover */
+.project-item > a:hover img { transform: translateZ(0) scale(1.02); }
+.project-item > a:hover .project-img::before { background: rgba(0,0,0,.35); }
+
+/* 6) map filter off by default */
+.mapbox iframe { filter: none; }
+
+/* 7) respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  * { animation: none !important; transition: none !important; }
+}
+
