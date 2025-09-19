@@ -116,29 +116,58 @@ for (let i = 0; i < filterBtn.length; i++) {
 
 
 // CONTACT FORM (mailto version)
-const form = document.querySelector("[data-form]");
-const formInputs = document.querySelectorAll("[data-form-input]");
-const formBtn = document.querySelector("[data-form-btn]");
+// CONTACT FORM (mailto version)
 
-// enable/disable the button based on validity
+// selectors (keep your data-* hooks)
+const form       = document.querySelector("[data-form]");
+const formInputs = document.querySelectorAll("[data-form-input]");
+const formBtn    = document.querySelector("[data-form-btn]");
+const statusEl   = document.getElementById("formStatus");
+
+// Enable/disable button based on validity
 const toggleBtn = () => {
   if (!form) return;
   if (form.checkValidity()) formBtn?.removeAttribute("disabled");
   else formBtn?.setAttribute("disabled", "");
 };
 
-// listen for typing/changes
 formInputs.forEach(el => {
   el.addEventListener("input", toggleBtn);
-  el.addEventListener("change", toggleBtn); // helps with autofill
+  el.addEventListener("change", toggleBtn);
 });
-
-// run once on load (covers autofill/BFCache)
 document.addEventListener("DOMContentLoaded", toggleBtn);
 window.addEventListener("pageshow", toggleBtn);
 
+// Submit to Formspree
+form?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if (!form.checkValidity()) { form.reportValidity?.(); return; }
 
+  formBtn?.setAttribute("disabled", "");
+  if (statusEl) statusEl.textContent = "Sending…";
 
+  try {
+    const res = await fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { "Accept": "application/json" }
+    });
+
+   if (res.ok) {
+    statusEl.textContent = "Thanks! Your message was sent.";
+    statusEl.className = "form-status success";
+    form.reset();
+    toggleBtn();
+  } else {
+    statusEl.textContent = msg;
+    statusEl.className = "form-status error";
+    formBtn?.removeAttribute("disabled");
+  }
+  } catch {
+    if (statusEl) statusEl.textContent = "Network error. Please try again.";
+    formBtn?.removeAttribute("disabled");
+  }
+});
 
 // page navigation variables
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
