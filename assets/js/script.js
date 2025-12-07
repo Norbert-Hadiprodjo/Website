@@ -508,3 +508,57 @@ splash.addEventListener('transitionend', (e) => {
   });
 })();
 
+
+
+// ==============================
+// URL PARAMS → OPEN PORTFOLIO + FILTER
+// ==============================
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  const rawCat = params.get("category");
+
+  if (!rawCat) return;
+
+  // turn "data-science" → "data science"
+  const cat = rawCat.toLowerCase().replace(/-/g, " ");
+
+  const portfolioLink = document.querySelector('[data-nav-link="portfolio"]');
+  const portfolioPage = document.querySelector('[data-page="portfolio"]');
+
+  // Hide all pages and remove active states
+  document.querySelectorAll("[data-page]").forEach(p =>
+    p.classList.remove("active")
+  );
+  document.querySelectorAll("[data-nav-link]").forEach(n =>
+    n.classList.remove("active")
+  );
+
+  // Activate portfolio page + nav
+  if (portfolioPage) portfolioPage.classList.add("active");
+  if (portfolioLink) portfolioLink.classList.add("active");
+
+  // Apply filter using normalized category
+  if (typeof filterFunc === "function") {
+    filterFunc(cat);
+  }
+
+  // Highlight correct filter button
+  document.querySelectorAll("[data-filter-btn]").forEach(btn => {
+    const text = btn.innerText.trim().toLowerCase();
+    if (text === cat) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+  });
+
+  // Optional: update the dropdown label as well
+  const selectValue = document.querySelector("[data-selecct-value]");
+  if (selectValue) {
+    const label = cat.replace(/\b\w/g, c => c.toUpperCase()); // "data science" → "Data Science"
+    selectValue.textContent = label;
+  }
+});
+
+
+
