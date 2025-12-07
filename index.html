@@ -39,8 +39,8 @@
       <div class="splash-inner">
         <div class="splash-content">
           <div class="identity-text left" id="splash-left">
-            <h2>Finance</h2>
-            <p>Data Analysis, Quantitative Research, Trading, Optimization, Modelling</p>
+            <h2>AI & Finance</h2>
+            <p>Data Science, Quantitative Research, Trading, Optimization, Modelling</p>
           </div>
 
           <div class="identity-photo" id="splash-photo">
@@ -49,8 +49,8 @@
           </div>
 
           <div class="identity-text right" id="splash-right">
-            <h2>Coder</h2>
-            <p>Software Development, Machine Learning, Artificial Intelligence, Data Science</p>
+            <h2>Data</h2>
+            <p>Software Development, Machine Learning, Artificial Intelligence, Data Visualization</p>
           </div>
         </div>
       </div>
@@ -76,7 +76,7 @@
       </li>
       
       <li class="navbar-item">
-        <button class="navbar-link" onclick="alert('Portfolio Section is Updating Soon!')">Portfolio</button>
+        <button class="navbar-link" data-nav-link>Portfolio</button>
       </li> 
       
 
@@ -112,7 +112,7 @@
         <div class="info-content">
           <h1 class="name" title="Norbert Hadiprodjo">Norbert Hadiprodjo</h1>
 
-          <p class="title">AI & Financial Engineering</p>
+          <p class="title">Data & Financial Engineering</p>
         </div>
 
         <button class="info_more-btn" data-sidebar-btn>
@@ -257,7 +257,7 @@
               </div>
 
               <div class="service-content-box">
-                <h4 class="h4 service-item-title">Data Analysis</h4>
+                <h4 class="h4 service-item-title">Data Science</h4>
 
                 <p class="service-item-text">
                   Collecting, cleaning, and interpreting complex datasets to uncover trends and support decision-making using Python (pandas, NumPy), SQL, and Excel.
@@ -721,15 +721,15 @@
             </li>
 
             <li class="filter-item">
-              <button data-filter-btn>Web design</button>
-            </li>
-
-            <li class="filter-item">
-              <button data-filter-btn>Applications</button>
-            </li>
-
-            <li class="filter-item">
               <button data-filter-btn>Web development</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Data Science</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Finance</button>
             </li>
 
           </ul>
@@ -753,15 +753,15 @@
               </li>
 
               <li class="select-item">
-                <button data-select-item>Web design</button>
-              </li>
-
-              <li class="select-item">
-                <button data-select-item>Applications</button>
-              </li>
-
-              <li class="select-item">
                 <button data-select-item>Web development</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Data Science</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Finance</button>
               </li>
 
             </ul>
@@ -774,9 +774,9 @@
               class="project-item active"
               data-filter-item
               data-category="web development"
-              data-desc="Finalist project: immersive dashboard with payments, history, and analytics."
-              data-demo="https://app.powerbi.com/reportEmbed?reportId=f330802a-3c9f-4212-bdd3-0530a586686e&autoAuth=true&ctid=78aac226-2f03-4b4d-9037-b46d56c55210"
-              data-github="https://github.com/yourrepo/the-missi"
+              data-desc="desc-missi"
+              data-demo=""
+              data-github=""
               data-images="./assets/images/Showcase Poster.png, ./assets/images/MISSI.png"
             >
               <a href="#" class="project-card" aria-haspopup="dialog">
@@ -789,26 +789,94 @@
                 <h3 class="project-title">The MISSI</h3>
                 <p class="project-category">Web development</p>
               </a>
+
+              <div id="desc-missi" class="full-desc" style="display:none;">
+
+                <h4>Project Overview</h4>
+                <p>
+                  The MISSI (Multi-Instrumented Stroke Simulation Interface) is a finalist project developed to help 
+                  beginner sprint-canoe athletes improve stroke consistency and synchronization. The system combines 
+                  motion tracking, visual cues, and real-time feedback to guide users toward smoother, more coordinated 
+                  paddling technique.
+                </p>
+
+                <p>
+                  MISSI provides a fully interactive training experience: athletes can monitor their stroke rate, track 
+                  their paddle position, and receive rhythm-based visual and audio guidance designed to reinforce proper 
+                  timing. The platform also supports group activity tracking, customizable sync speed, and a realistic 
+                  canoeing environment for immersive practice.
+                </p>
+
+                <p>
+                  The goal of the project was to create a beginner-friendly, accessible tool that bridges biomechanics, 
+                  human-computer interaction, and web-based simulation. MISSI emphasizes usability, performance feedback, 
+                  and athlete engagement—helping new paddlers develop confidence while training efficiently.
+                </p>
+
+                <h4>Technologies Used</h4>
+                <ul>
+                  <li>JavaScript (Frontend Interaction)</li>
+                  <li>Web-based Motion Tracking</li>
+                  <li>Real-time Sync & Feedback Engine</li>
+                  <li>UI/UX Interface Design</li>
+                  <li>Immersive Multimedia Integration</li>
+                </ul>
+
+              </div>
             </li>
 
-
-            <li class="project-item active" data-filter-item data-category="web development">
+            <li
+              class="project-item active"
+              data-filter-item
+              data-category="data science"
+              data-desc="desc-toronto-shelter"
+              data-demo=""
+              data-github=""
+              data-images="./assets/images/SampleWork_DataVisualization_Netflix.pdf"
+              >
               <a href="#" class="project-card" aria-haspopup="dialog">
-
                 <figure class="project-img">
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
-
-                  <img src="./assets/images/project-9.png" alt="arrival" loading="lazy">
+                  <img src="./assets/images/TorontoHomelessCover.png" alt="Toronto Shelter" loading="lazy">
                 </figure>
-
-                <h3 class="project-title">Arrival</h3>
-
-                <p class="project-category">Web development</p>
-
+                <h3 class="project-title">Toronto Shelter Data Visualization</h3>
+                <p class="project-category">Data Science</p>
               </a>
+
+              <div id="desc-toronto-shelter" class="full-desc" style="display:none;">
+              <h4>Project Overview</h4>
+              <p>
+                This project visualizes key insights from Toronto’s homeless shelter system, focusing on how far individuals
+                must travel to access available beds. Using real city data, our team built an interactive, story-driven slide deck
+                that highlights the scale of homelessness, travel burdens across neighbourhoods, and capacity gaps in
+                high-demand areas. The goal was to present the findings in a way that feels human, accessible, and grounded
+                in the lived experience behind the numbers.
+              </p>
+              <p>
+                The analysis supports a person-centred perspective: rather than simply mapping shelters, it emphasizes how
+                placement, distance, and availability impact people navigating the system. The project brings together
+                data visualization, urban analytics, and policy awareness to communicate where the city’s network works
+                and where it leaves individuals travelling long distances for help.
+              </p>
+
+              <h4>Technologies Used</h4>
+              <ul>
+                <li>Discrete-Event Simulation</li>
+                <li>Optimization Modeling</li>
+                <li>Python (Pandas, NumPy, SciPy)</li>
+                <li>Matplotlib &amp; Seaborn</li>
+                <li>GeoPandas for spatial analysis</li>
+                <li>Heatmap & geospatial visualization</li>
+              </ul>
+            </div>
+            
             </li>
+
+            
+
+
 
           </ul>
 
@@ -902,6 +970,11 @@
             </button>
 
             <div class="slider__dots" id="sliderDots"></div>
+
+            <iframe id="pdfViewer"
+              style="width:100%; height:80vh; border:none; display:none;">
+            </iframe>
+
           </div>
 
           <div class="modal__body">

@@ -375,7 +375,18 @@ splash.addEventListener('transitionend', (e) => {
 
     if (titleEl) titleEl.textContent = title;
     if (catEl)   catEl.textContent   = category;
-    if (descEl)  descEl.textContent  = desc;
+    if (descEl) {
+    const block = document.getElementById(desc);
+
+    // If desc refers to a hidden HTML block, load its HTML
+    if (block) {
+      descEl.innerHTML = block.innerHTML;
+    } 
+    // Otherwise treat it as plain text
+    else {
+      descEl.textContent = desc;
+    }
+  }
 
     // Links
     const demo = item.getAttribute('data-demo');
@@ -388,6 +399,38 @@ splash.addEventListener('transitionend', (e) => {
       if (gh)   { ghEl.href   = gh;   ghEl.style.display   = ''; }
       else      { ghEl.removeAttribute('href'); ghEl.style.display   = 'none'; }
     }
+
+    //--------------------------------------------
+    const pdfViewer = document.getElementById("pdfViewer");
+    const slider = document.getElementById("modalSlider");
+    const demoLink = item.getAttribute("data-images");
+    const isPDF = demoLink && demoLink.toLowerCase().endsWith(".pdf");
+
+    if (isPDF) {
+      pdfViewer.style.display = "block";
+      pdfViewer.src = demoLink;
+
+      slider.style.display = "none";
+      dots.style.display = "none";
+      btnPrev.style.display = "none";
+      btnNext.style.display = "none";
+
+      modal.classList.add("open");
+      document.body.classList.add("modal-open");
+      closeBtn?.focus();
+
+      return;
+    } else {
+      pdfViewer.style.display = "none";
+      pdfViewer.src = "";
+      slider.style.display = "block";
+      dots.style.display = "";
+      btnPrev.style.display = "";
+      btnNext.style.display = "";
+    }
+
+    
+    //---------------------------------
 
     // Media (images only)
     clearTrack();

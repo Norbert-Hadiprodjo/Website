@@ -2902,3 +2902,57 @@ body.modal-open { overflow: hidden; }
 }
 
 .contact-form { margin-top: 2rem; }
+
+
+/* PORTFOLIO TEXT */ 
+
+/* Modal Description Styling */
+#modalDesc {
+  color: #ddd;
+  line-height: 1.6;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+#modalDesc h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.5rem;
+  color: #fff;
+}
+
+#modalDesc p {
+  margin-bottom: 0.9rem;
+  color: #ccc;
+}
+
+#modalDesc ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+#modalDesc ul li {
+  background: #1f1f1f;
+  color: #e5e5e5;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  border: 1px solid #333;
+  white-space: nowrap;
+  transition: 0.2s ease;
+}
+
+#modalDesc ul li:hover {
+  background: #2b2b2b;
+  border-color: #444;
+}
+
+#modalDesc {
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 6px;
+}
