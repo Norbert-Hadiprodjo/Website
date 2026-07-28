@@ -112,7 +112,7 @@
         <div class="info-content">
           <h1 class="name" title="Norbert Hadiprodjo">Norbert Hadiprodjo</h1>
 
-          <p class="title">Data & Financial Engineering</p>
+          <p class="title">AI & Financial Engineering</p>
         </div>
 
         <button class="info_more-btn" data-sidebar-btn>
@@ -217,7 +217,7 @@
         <div class="code-viewer" id="about-code">
           <div><span class="comment">// Learning, Building, Optimizing :)</span></div>
           <div><span class="keyword">const</span> Norbert_Hadiprodjo = <span class="bracket">{</span></div>
-          <div class="indent1"><span class="property">role</span>: <span class="string">"Industrial Engineering Student "</span>,</div>
+          <div class="indent1"><span class="property">role</span>: <span class="string">"Systems Engineering Student "</span>,</div>
           <div class="indent1"><span class="property">focus</span>: <span class="string">"AI and Business Minors"</span>,</div>
           <div class="indent1"><span class="property">experience</span>: <span class="string">"3+ years in Software Development, Data Science & Machine Learning"</span>,</div>
           <div class="indent1"><span class="property">skills</span>: <span class="bracket">[</span></div>
@@ -397,7 +397,7 @@
 
             <div class="timeline-text">
               <ul class="resume-bullets">
-                <li><strong>Bachelor of Applied Science and Engineering (B.A.Sc)</strong> – Industrial Engineering</li>
+                <li><strong>Bachelor of Applied Science and Engineering (B.A.Sc)</strong> – Systems Engineering</li>
                 <li><em>Artificial Intelligence & Engineering Business Minors</em></li>
                 <li>🎓 Recipient of University of Toronto Engineering International Scholar Award, granted to the top 12% of applicants — valued at $128,000 over four years for academic excellence, leadership, and dedication.</li>
                 <li><strong>Specialized Coursework:</strong> Applied Fundamentals of Deep Learning, Artificial Intelligence & Machine Learning, Systems Modelling and Simulation, Linear Programming (Optimization), Stochastic System, Data Science, Scheduling,  Data Modelling, Finance, Supply Chain Management, Design of Information Systems</li>
@@ -721,7 +721,7 @@
             </li>
 
             <li class="filter-item">
-              <button data-filter-btn>Web development</button>
+              <button data-filter-btn>Software Development</button>
             </li>
 
             <li class="filter-item">
@@ -753,7 +753,7 @@
               </li>
 
               <li class="select-item">
-                <button data-select-item>Web development</button>
+                <button data-select-item>Software Development</button>
               </li>
 
               <li class="select-item">
@@ -773,7 +773,7 @@
              <li
               class="project-item active"
               data-filter-item
-              data-category="web development"
+              data-category="software development"
               data-desc="desc-missi"
               data-demo=""
               data-github=""
@@ -787,7 +787,7 @@
                   <img src="./assets/images/MISSI.png" alt="The MISSI" loading="lazy">
                 </figure>
                 <h3 class="project-title">The MISSI</h3>
-                <p class="project-category">Web development</p>
+                <p class="project-category">Software Development</p>
               </a>
 
               <div id="desc-missi" class="full-desc" style="display:none;">
@@ -871,12 +871,210 @@
                 <li>Heatmap & geospatial visualization</li>
               </ul>
             </div>
-            
+
             </li>
 
-            
+            <li
+              class="project-item active"
+              data-filter-item
+              data-category="software development"
+              data-desc="desc-trendbaker"
+              data-demo=""
+              data-github="https://github.com/Norbert-Hadiprodjo/Trend_Scraper.git"
+              data-images="./assets/images/trendbaker-dashboard.png, ./assets/images/trendbaker-dataflow.png"
+            >
+              <a href="#" class="project-card" aria-haspopup="dialog">
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/trendbaker-dashboard.png" alt="TrendBaker" loading="lazy">
+                </figure>
+                <h3 class="project-title">TrendBaker</h3>
+                <p class="project-category">Software Development</p>
+              </a>
 
+              <div id="desc-trendbaker" class="full-desc" style="display:none;">
 
+                <h4>Project Overview</h4>
+                <p>
+                  TrendBaker is an evidence-first bakery trend discovery MVP built for FGF Brands at a hackathon.
+                  It discovers repeated product-intent signals from official APIs like YouTube, validates the
+                  strongest candidates with a targeted second pass, and computes deterministic momentum and
+                  confidence scores rather than letting an LLM guess numbers.
+                </p>
+
+                <p>
+                  Every recommendation is attached to collected evidence: an optional OpenAI-compatible LLM
+                  layer only canonicalizes and explains findings, never scores them. Results are exported as
+                  auditable JSON and surfaced in a four-view Streamlit dashboard covering trend quadrants,
+                  ingredient and product-format opportunities, and full trend detail with clickable evidence.
+                </p>
+
+                <h4>Technologies Used</h4>
+                <ul>
+                  <li>Python (data pipeline, deterministic scoring)</li>
+                  <li>YouTube Data API v3 & Reddit Data API</li>
+                  <li>OpenAI-compatible LLM (Claude API) for evidence-grounded synthesis</li>
+                  <li>SQLite & atomic JSON exports</li>
+                  <li>Streamlit dashboard</li>
+                  <li>React/Vite dashboard (optional companion app)</li>
+                </ul>
+
+              </div>
+            </li>
+
+            <li
+              class="project-item active"
+              data-filter-item
+              data-category="software development"
+              data-desc="desc-incontent"
+              data-demo=""
+              data-github=""
+              data-images="./assets/images/incontent-1.png, ./assets/images/incontent-2.png"
+            >
+              <a href="#" class="project-card" aria-haspopup="dialog">
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/incontent-1.png" alt="InContent" loading="lazy">
+                </figure>
+                <h3 class="project-title">InContent</h3>
+                <p class="project-category">Software Development</p>
+              </a>
+
+              <div id="desc-incontent" class="full-desc" style="display:none;">
+
+                <h4>Project Overview</h4>
+                <p>
+                  InContent scores a TikTok draft before it's posted and returns prioritized, specific edit
+                  suggestions — catching what's fixable before it goes out, not after. Editing mechanics like
+                  cuts, silence, and speech rate are computed deterministically with no model call, while only
+                  genuinely subjective judgment, such as whether a hook creates a curiosity gap or a caption
+                  lands, goes through a multimodal LLM.
+                </p>
+
+                <p>
+                  Independently testable skills handle ingestion, transcription, pacing, hook mechanics, trend
+                  context, semantic analysis, and scoring, wired together by a single orchestrator and served
+                  through a FastAPI backend with a web dashboard that takes a draft from upload straight to a
+                  breakdown of ranked, specific fixes.
+                </p>
+
+                <h4>Technologies Used</h4>
+                <ul>
+                  <li>Python & FastAPI</li>
+                  <li>Speech-to-text with word-level timestamps</li>
+                  <li>Scene-cut & audio envelope analysis (ffmpeg)</li>
+                  <li>Anthropic Claude API (multimodal semantic scoring)</li>
+                  <li>Playwright (TikTok Creative Center trend scraping)</li>
+                  <li>Perplexity & Google Trends APIs (trend context)</li>
+                </ul>
+
+              </div>
+            </li>
+
+            <li
+              class="project-item active"
+              data-filter-item
+              data-category="software development"
+              data-desc="desc-partselect"
+              data-demo="https://partselect-agent-753a.vercel.app/"
+              data-github="https://github.com/Norbert-Hadiprodjo/partselect-agent.git"
+              data-images="./assets/images/partselect-agent.png"
+            >
+              <a href="#" class="project-card" aria-haspopup="dialog">
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/partselect-agent.png" alt="PartSelect Parts Assistant" loading="lazy">
+                </figure>
+                <h3 class="project-title">PartSelect Parts Assistant</h3>
+                <p class="project-category">Software Development</p>
+              </a>
+
+              <div id="desc-partselect" class="full-desc" style="display:none;">
+
+                <h4>Project Overview</h4>
+                <p>
+                  A scoped AI chat agent built for PartSelect, covering refrigerator and dishwasher parts only.
+                  A fast keyword-based scope guard deflects out-of-scope questions before ever hitting the LLM,
+                  then a Claude Haiku router classifies intent and appliance before handing off to one of three
+                  specialist LangGraph agents for parts lookup, repair guidance, or order support.
+                </p>
+
+                <p>
+                  Each specialist agent is a LangGraph <code>createReactAgent</code> with tool access to live
+                  PartSelect data scraped on demand, streamed back to the UI over Server-Sent Events. Every query
+                  costs just two Claude API calls — router plus specialist worker — keeping per-query cost to
+                  roughly $0.001–0.003 with Haiku.
+                </p>
+
+                <h4>Technologies Used</h4>
+                <ul>
+                  <li>Next.js 14 (App Router)</li>
+                  <li>LangGraph multi-agent orchestration</li>
+                  <li>Claude Haiku (Anthropic API)</li>
+                  <li>Server-Sent Events (streaming)</li>
+                  <li>Cheerio web scraping against partselect.com</li>
+                  <li>Zod-validated LangChain tools</li>
+                </ul>
+
+              </div>
+            </li>
+
+            <li
+              class="project-item active"
+              data-filter-item
+              data-category="software development"
+              data-desc="desc-cosailor"
+              data-demo=""
+              data-github=""
+              data-images="./assets/images/cosailor-insights.png"
+            >
+              <a href="#" class="project-card" aria-haspopup="dialog">
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/cosailor-insights.png" alt="Cosailor Insights" loading="lazy">
+                </figure>
+                <h3 class="project-title">Cosailor Insights</h3>
+                <p class="project-category">Software Development</p>
+              </a>
+
+              <div id="desc-cosailor" class="full-desc" style="display:none;">
+
+                <h4>Project Overview</h4>
+                <p>
+                  Cosailor Insights is an AI-scored roofing lead dashboard: given a zip code and radius, it
+                  surfaces GAF-certified contractors ranked by a computed priority score, plots them on a map,
+                  and gives each one a grounded, plain-English summary and talking points a sales rep can use
+                  before dialing.
+                </p>
+
+                <p>
+                  A FastAPI backend runs the ingestion pipeline — scrape, enrich with Perplexity Sonar research,
+                  score, then narrate with a single-shot Claude call per lead — and guards the model against
+                  inventing facts by instructing it to use only the already-known, already-scored fields it's
+                  given. The score itself is always computed deterministically, never by the LLM. A React +
+                  Leaflet frontend renders the ranked list alongside an interactive map of every lead.
+                </p>
+
+                <h4>Technologies Used</h4>
+                <ul>
+                  <li>FastAPI & SQLAlchemy (Python backend)</li>
+                  <li>Anthropic Claude API (grounded lead narration)</li>
+                  <li>Perplexity Sonar (contractor research)</li>
+                  <li>React, TanStack Query & Leaflet (frontend)</li>
+                  <li>Vite & Tailwind CSS</li>
+                  <li>SQLite</li>
+                </ul>
+
+              </div>
+            </li>
 
           </ul>
 
