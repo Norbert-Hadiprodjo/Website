@@ -173,22 +173,44 @@ form?.addEventListener("submit", async (e) => {
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
 const pages = document.querySelectorAll("[data-page]");
 
+// Activates the page matching pageName ("about", "resume", "portfolio",
+// "contact") and keeps the URL hash in sync so the page is linkable —
+// shared by nav-link clicks and by the initial-load hash check below.
+const openPageFunc = function (pageName) {
+  let matched = false;
+  pages.forEach((page) => {
+    if (page.dataset.page === pageName) {
+      page.classList.add("active");
+      matched = true;
+    } else {
+      page.classList.remove("active");
+    }
+  });
+  navigationLinks.forEach((link) => {
+    link.classList.toggle("active", link.innerHTML.toLowerCase() === pageName);
+  });
+  return matched;
+};
+
 // add event to all nav link
 for (let i = 0; i < navigationLinks.length; i++) {
   navigationLinks[i].addEventListener("click", function () {
-
-    for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
-        pages[i].classList.add("active");
-        navigationLinks[i].classList.add("active");
-        window.scrollTo(0, 0);
-      } else {
-        pages[i].classList.remove("active");
-        navigationLinks[i].classList.remove("active");
-      }
+    const pageName = this.innerHTML.toLowerCase();
+    if (openPageFunc(pageName)) {
+      history.pushState(null, "", "#" + pageName);
+      window.scrollTo(0, 0);
     }
-
   });
+}
+
+// Deep link on load: https://.../#portfolio or https://.../?page=portfolio
+// both open straight to that tab (query param first, since it's the more
+// share/link-safe form — some chat apps and shorteners drop #fragments).
+const deepLinkPage =
+  new URLSearchParams(window.location.search).get("page") ||
+  (window.location.hash ? window.location.hash.slice(1) : null);
+if (deepLinkPage) {
+  openPageFunc(deepLinkPage.toLowerCase());
 }
 
 
