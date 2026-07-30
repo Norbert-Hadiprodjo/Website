@@ -83,25 +83,3 @@ Then open `http://localhost:8000`. Opening `index.html` directly via `file://` m
 To deploy, push to a repo and enable GitHub Pages — there is nothing to build.
 
 ---
-
-## Known issues
-
-Three things worth fixing before this goes on a résumé:
-
-**1. `ReferenceError` in the form error path.** In `script.js`, the non-`res.ok` branch reads:
-
-```js
-statusEl.textContent = msg;   // msg is never defined
-```
-
-This throws, gets swallowed by the surrounding `catch`, and the user sees "Network error" for what was actually a server-side rejection. Replace `msg` with a literal string, or read the error from the Formspree response body.
-
-**2. Dead testimonials code.** `script.js` queries `[data-testimonials-item]`, which no longer exists in `index.html` — the loop is a no-op. The associated modal markup is still present and its close handlers still bind, so nothing breaks, but roughly 30 lines are unreachable and can be deleted.
-
-**3. Fragile nav loop.** The page-navigation handler shadows the outer loop variable `i` and then indexes `navigationLinks[i]` inside the inner loop over `pages`. It works only because nav links and pages happen to be in identical order and count. Matching by `data-page` value directly would be more robust.
-
-Also worth noting: `[data-selecct-value]` is a typo carried consistently across HTML and JS. It functions, but it will confuse anyone reading the code.
-
----
-
-
